@@ -21,5 +21,5 @@ def allticketlist(request):
 
 def detail(request, t_id):
     ticket = get_object_or_404(Ticket, pk=t_id)
-    output = ticket.t_content
-    return HttpResponse(output)
+    context = {"ticket":ticket}
+    return render(request, "ticket/detail.html", context)
