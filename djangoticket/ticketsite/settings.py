@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'ticketsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ticketdb',
-        'USER': 'root',
-        'PASSWORD': 'sa$234',
-        'HOST': 'localhost',
-        'PORT': 3306,
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': ,
     }
 }
 
