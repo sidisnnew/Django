@@ -15,32 +15,23 @@ def main(request):
 
 @login_required
 def ticketlist(request):
-    if request.user.is_authenticated:
-        ticket_list = Ticket.objects.filter(t_status=False).order_by("pub_date")
-        context = {"ticket_list":ticket_list}
-        return render(request, "ticket/ticket_list.html", context)
-    else:
-        return HttpResponseRedirect("/ticket")
+    ticket_list = Ticket.objects.filter(t_status=False).order_by("pub_date")
+    context = {"ticket_list":ticket_list}
+    return render(request, "ticket/ticket_list.html", context)
 
 
 @login_required
 def allticketlist(request):
-    if request.user.is_authenticated:
-        all_ticket_list = Ticket.objects.order_by("-pub_date")
-        context = {"all_ticket_list":all_ticket_list}
-        return render(request, "ticket/all_ticket_list.html", context)
-    else:
-        return HttpResponseRedirect("/ticket")
+    all_ticket_list = Ticket.objects.order_by("-pub_date")
+    context = {"all_ticket_list":all_ticket_list}
+    return render(request, "ticket/all_ticket_list.html", context)
 
 
 @login_required
 def detail(request, t_id):
-    if request.user.is_authenticated:
-        ticket = get_object_or_404(Ticket, pk=t_id)
-        context = {"ticket":ticket}
-        return render(request, "ticket/detail.html", context)
-    else:
-        return HttpResponseRedirect("/ticket")
+    ticket = get_object_or_404(Ticket, pk=t_id)
+    context = {"ticket":ticket}
+    return render(request, "ticket/detail.html", context)
 
 
 def login(request):
@@ -58,4 +49,4 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect("/main")
+    return render(request, "ticket/logout.html")
