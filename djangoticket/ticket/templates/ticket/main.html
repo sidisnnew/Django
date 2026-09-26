@@ -1,6 +1,11 @@
-<h1>Ticket System</h1>
-<p style="text-align: right;"><a href="/ticket/logout">Logout</a></p>
+{% extends "ticket/base.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block body %}
+<h2>Menu</h2>
 <ul>
     <li><a href="/ticket/tickets/">To do list({{ticket_number}})</a></li>
     <li><a href="/ticket/all/">All ticket({{all_ticket_number}})</a></li>
 </ul>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Ticket System{% endblock %}</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between;">
+        <span><a href="/ticket">Home</a></span>
+        <span>
+            {% if user.is_authenticated %}
+            <a href="/ticket/logout">Logout</a>
+            {% endif %}
+        </span>
+    </div>
+    <hr>
+    {% block body %} {% endblock %}
+</body>
+</html>

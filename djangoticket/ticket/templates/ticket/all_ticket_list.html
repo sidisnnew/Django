@@ -1,4 +1,9 @@
-<h1>All tickets</h1>
+{% extends "ticket/base.html" %}
+{% block title %}
+All Tickets
+{% endblock %}
+{% block body %}
+<h2>All tickets</h2>
 {% if all_ticket_list%}
     <ul>
         {% for ticket in all_ticket_list %}
@@ -8,3 +13,4 @@
 {% else %}
     <p>No ticket</p>
 {% endif %}
+{% endblock %}

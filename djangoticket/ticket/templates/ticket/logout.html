@@ -1,8 +1,9 @@
-<head>
-    <h1>Logout Page</h1>
-</head>
-<body>
-    Logout successful
-    <br>
-    <a href="/ticket">Home page</a>
-</body>
+{% extends "ticket/base.html" %}
+{% block title %}
+Logout
+{% endblock %}
+{% block body %}
+<h2>Logout successful</h2>
+<br>
+Back to <a href="/ticket">Home page</a>
+{% endblock %}

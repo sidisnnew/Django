@@ -1,3 +1,9 @@
+{% extends "ticket/base.html" %}
+{% block title %}
+Ticket {{ticket.id}}
+{% endblock %}
+{% block body %}
+<h2>Detail</h2>
 <ul>
     <li>Title: {{ticket.t_title}}</li>
     <li>Published date: {{ticket.pub_date}}</li>
@@ -5,3 +11,4 @@
     <li>Status: {{ticket.t_status}}</li>
     <li>Warranty: {{ticket.t_warranty}}</li>
 </ul>
+{% endblock %}
