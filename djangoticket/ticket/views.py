@@ -22,7 +22,23 @@ def ticketlist(request):
 
 @login_required
 def allticketlist(request):
+    from_date = request.GET.get("from")
+    to_date = request.GET.get("to")
+
     all_ticket_list = Ticket.objects.order_by("-pub_date")
+    if from_date and to_date:
+        all_ticket_list = all_ticket_list.filter(
+            pub_date__range=[from_date, to_date]
+        )
+    elif from_date:
+        all_ticket_list = all_ticket_list.filter(
+            pub_date__gte=from_date
+        )
+    elif to_date:
+        all_ticket_list = all_ticket_list.filter(
+            pub_date__lte=to_date
+        )
+
     context = {"all_ticket_list":all_ticket_list}
     return render(request, "ticket/all_ticket_list.html", context)
 

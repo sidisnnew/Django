@@ -4,6 +4,14 @@ All Tickets
 {% endblock %}
 {% block body %}
 <h2>All tickets</h2>
+<form method="get" action="{% url 'ticket:all' %}">
+    <label for="from">From: </label>
+    <input type="date" id="from" name="from">
+    <label for="to">To: </label>
+    <input type="date" id="to" name="to">
+    <input type="submit" value="Search">
+</form>
+
 {% if all_ticket_list%}
     <ul>
         {% for ticket in all_ticket_list %}
