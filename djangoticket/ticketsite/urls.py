@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponseRedirect
+
+def home(request):
+    return HttpResponseRedirect("/ticket")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ticket/', include("ticket.urls"))
+    path('ticket/', include("ticket.urls")),
+    path('', home),
 ]
