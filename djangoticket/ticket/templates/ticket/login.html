@@ -4,12 +4,13 @@ Home
 {% endblock %}
 {% block body %}
 <h2>Login</h2>
+
 <form method="post">
     {% csrf_token %}
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br><br>
-    <input type="submit" value="Login">
+    <label class="form-label">Username:</label><br>
+    <input type="text" id="username" name="username" class="form-control"><br>
+    <label class="form-label">Password:</label><br>
+    <input type="password" id="password" name="password" class="form-control"><br><br>
+    <input type="submit" value="Login" class="btn btn-primary">
 </form>
 {% endblock %}
