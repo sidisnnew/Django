@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 def home(request):
     return HttpResponseRedirect("/ticket")
 
+def about(request):
+    return render(request, "about.html")
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ticket/', include("ticket.urls")),
+    path('about', about),
     path('', home),
 ]
