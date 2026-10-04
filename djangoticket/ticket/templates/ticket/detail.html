@@ -1,14 +1,62 @@
 {% extends "ticket/base.html" %}
+{% block head %}
+<style>
+    .info{
+        background-color: #c5c5c5;
+    }
+</style>
+{% endblock %}
+
 {% block title %}
 Ticket {{ticket.id}}
 {% endblock %}
 {% block body %}
 <h2>Detail</h2>
-<ul>
-    <li>Title: {{ticket.t_title}}</li>
-    <li>Published date: {{ticket.pub_date}}</li>
-    <li>Content: {{ticket.t_content}}</li>
-    <li>Status: {{ticket.t_status}}</li>
-    <li>Warranty: {{ticket.t_warranty}}</li>
-</ul>
+
+<div class="container-fluid">
+    <div class="border p-3">
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <strong>Title:</strong>
+                    {{ ticket.t_title }}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <strong>Published date:</strong>
+                    {{ ticket.pub_date }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    <strong>Status:</strong>
+                    {{ ticket.t_status }}
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <strong>Warranty:</strong>
+                    {{ ticket.t_warranty }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br>
+
+<div class="container-fluid">
+    <p class="border p-3 info">
+        <strong>Content:</strong>
+        <br>
+        {{ ticket.t_content }}
+    </p>
+</div>
+
 {% endblock %}
