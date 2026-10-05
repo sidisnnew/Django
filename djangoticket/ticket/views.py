@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Ticket
+from .models import Ticket, Comment
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
@@ -46,7 +46,17 @@ def allticketlist(request):
 @login_required
 def detail(request, t_id):
     ticket = get_object_or_404(Ticket, pk=t_id)
-    context = {"ticket":ticket}
+    comments = Comment.objects.filter(ticket=ticket).order_by("pub_date")
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "status":
+            ticket.t_status = not ticket.t_status
+            ticket.save()
+        elif action == "comment":
+            content = request.POST.get("comment")
+            Comment.objects.create(ticket=ticket, content=content)
+
+    context = {"ticket":ticket, "comments":comments}    
     return render(request, "ticket/detail.html", context)
 
 

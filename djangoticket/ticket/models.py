@@ -13,3 +13,11 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.t_title
+
+class Comment(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    content = models.CharField(max_length=500)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content

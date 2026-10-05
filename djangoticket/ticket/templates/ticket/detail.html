@@ -35,7 +35,20 @@ Ticket {{ticket.id}}
             <div class="col-md-6">
                 <p>
                     <strong>Status:</strong>
-                    {{ ticket.t_status }}
+                    {% if ticket.t_status %}
+                    ✓
+                    {% else %}
+                    ✕
+                    {% endif %}
+                    <form method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="status">
+                        {% if ticket.t_status %}
+                        <button type="submit" class="btn btn-danger">未完成</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-success">完成</button>
+                        {% endif %}
+                    </form>
                 </p>
             </div>
             <div class="col-md-6">
@@ -59,4 +72,24 @@ Ticket {{ticket.id}}
     </p>
 </div>
 
+<div class="container-fluid">
+    <div class="border p-3">
+        {% if comments %}
+            {% for comment in comments %}
+                {{comment.pub_date}}
+                <br>
+                {{comment.content}}
+                <hr>
+            {% endfor %}
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="comment">
+            <input type="text" id="comment" name="comment" class="form-control">
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
