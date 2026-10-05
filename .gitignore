@@ -2,3 +2,17 @@
 /._.DS_Store
 /djangotutorial
 /myproject
+djangoticket/ticket/__pycache__/admin.cpython-39.pyc
+djangoticket/ticket/__pycache__/admin.cpython-39.pyc
+djangoticket/ticket/__pycache__/urls.cpython-39.pyc
+djangoticket/ticket/__pycache__/admin.cpython-39.pyc
+djangoticket/ticket/__pycache__/models.cpython-39.pyc
+djangoticket/ticket/__pycache__/urls.cpython-39.pyc
+djangoticket/ticket/__pycache__/views.cpython-39.pyc
+djangoticket/ticket/migrations/__pycache__/0001_initial.cpython-39.pyc
+djangoticket/ticket/migrations/__pycache__/0002_rename_t_id_comment_ticket.cpython-39.pyc
+djangoticket/ticket/migrations/__pycache__/0003_comment.cpython-39.pyc
+djangoticket/ticket/migrations/__pycache__/0004_remove_comment_ticket_id_comment_pub_date_and_more.cpython-39.pyc
+djangoticket/ticket/migrations/__pycache__/0005_rename_ticket_comment_t_id.cpython-39.pyc
+djangoticket/ticketsite/__pycache__/settings.cpython-39.pyc
+djangoticket/ticketsite/__pycache__/urls.cpython-39.pyc
