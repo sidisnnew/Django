@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Ticket, Comment
+from .models import Ticket, Comment, TicketImage
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
@@ -47,6 +47,7 @@ def allticketlist(request):
 def detail(request, t_id):
     ticket = get_object_or_404(Ticket, pk=t_id)
     comments = Comment.objects.filter(ticket=ticket).order_by("pub_date")
+    images = TicketImage.objects.filter(ticket=ticket).order_by("pub_date")
     if request.method == "POST":
         action = request.POST.get("action")
         if action == "status":
@@ -55,8 +56,11 @@ def detail(request, t_id):
         elif action == "comment":
             content = request.POST.get("comment")
             Comment.objects.create(ticket=ticket, content=content)
+        elif action == "image":
+            image = request.FILES.get("image")
+            TicketImage.objects.create(ticket=ticket, image=image)
 
-    context = {"ticket":ticket, "comments":comments}    
+    context = {"ticket":ticket, "comments":comments, "images":images}    
     return render(request, "ticket/detail.html", context)
 
 

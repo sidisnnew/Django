@@ -21,3 +21,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+class TicketImage(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="ticket_images/")
+    pub_date = models.DateTimeField(auto_now_add=True)

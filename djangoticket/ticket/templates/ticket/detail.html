@@ -74,22 +74,44 @@ Ticket {{ticket.id}}
 
 <div class="container-fluid">
     <div class="border p-3">
-        {% if comments %}
-            {% for comment in comments %}
-                {{comment.pub_date}}
-                <br>
-                {{comment.content}}
-                <hr>
-            {% endfor %}
-        {% endif %}
-        <form method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="action" value="comment">
-            <input type="text" id="comment" name="comment" class="form-control">
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <div class = "row">
+            <div class="col-md-6">
+            {% if comments %}
+                {% for comment in comments %}
+                    {{comment.pub_date}}
+                    <br>
+                    {{comment.content}}
+                    <hr>
+                {% endfor %}
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="comment">
+                <input type="text" id="comment" name="comment" class="form-control">
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                </div>
+            </form>
             </div>
-        </form>
+            <div class="col-md-6">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="image">
+                    <input type="file" name="image" accept="image/*">
+                    <button type="submit">Upload</button>
+                </form>
+                <hr>
+                {% if images %}
+                    {% for image in images %}
+                        <p>
+                        <img src="{{ image.image.url }}" alt="Ticket image" width="500">
+                        <br>
+                        {{image.pub_date}}
+                        </p>
+                    {% endfor %}
+                {% endif %}    
+            </div>
+        </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %}  
