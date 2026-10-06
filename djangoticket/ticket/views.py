@@ -58,7 +58,8 @@ def detail(request, t_id):
             Comment.objects.create(ticket=ticket, content=content)
         elif action == "image":
             image = request.FILES.get("image")
-            TicketImage.objects.create(ticket=ticket, image=image)
+            if image:
+                TicketImage.objects.create(ticket=ticket, image=image)
 
     context = {"ticket":ticket, "comments":comments, "images":images}    
     return render(request, "ticket/detail.html", context)
