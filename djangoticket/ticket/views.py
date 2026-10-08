@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Ticket, Comment, TicketImage
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 @login_required
@@ -25,7 +26,7 @@ def allticketlist(request):
     from_date = request.GET.get("from")
     to_date = request.GET.get("to")
 
-    all_ticket_list = Ticket.objects.order_by("-pub_date")
+    all_ticket_list = Ticket.objects.order_by("-id")
     if from_date and to_date:
         all_ticket_list = all_ticket_list.filter(
             pub_date__range=[from_date, to_date]
@@ -66,6 +67,8 @@ def detail(request, t_id):
 
 @login_required
 def addTicket(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect("/ticket")
     if request.method == "POST":
         t_title = request.POST.get("title")
         t_content = request.POST.get("content")
