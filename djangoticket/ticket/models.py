@@ -4,7 +4,7 @@ from django.db import models
 class Ticket(models.Model):
     t_title = models.CharField(max_length=100)
     t_content = models.CharField(max_length=500)
-    pub_date = models.DateTimeField("Date published")
+    pub_date = models.DateTimeField(auto_now_add=True)
     t_status = models.BooleanField(default=False)
     t_warranty = models.BooleanField(null=True, blank=True, default=None)
 
