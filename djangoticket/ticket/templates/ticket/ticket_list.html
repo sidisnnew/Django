@@ -1,15 +1,36 @@
 {% extends "ticket/base.html" %}
 {% block title %}
-Ticket List
+待辦清單
 {% endblock %}
 {% block body %}
-<h2>To do list</h2>
+<h2 class="title">待辦清單</h2>
 {% if ticket_list%}
-    <ul>
-        {% for ticket in ticket_list %}
-        <li><a href="/ticket/{{ticket.id}}">{{ticket.t_title}}</a></li>
-        {% endfor %}
-    </ul>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Warranty</th>
+                <th scope="col">Published date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in ticket_list %}
+            <tr onclick="window.location='/ticket/{{ticket.id}}';" style="cursor: pointer;">
+                <th scope="row">{{ticket.id}}</th>
+                <td>{{ticket.t_title}}</td>
+                <td>
+                    {% if ticket.t_warranty %}
+                    <span class="text-success">✓</span>
+                    {% else %}
+                    <span class="text-danger">✕</span>
+                    {% endif %}
+                </td>
+                <td>{{ticket.pub_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% else %}
     <p>No ticket left</p>
 {% endif %}

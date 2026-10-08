@@ -64,6 +64,18 @@ def detail(request, t_id):
     context = {"ticket":ticket, "comments":comments, "images":images}    
     return render(request, "ticket/detail.html", context)
 
+@login_required
+def addTicket(request):
+    if request.method == "POST":
+        t_title = request.POST.get("title")
+        t_content = request.POST.get("content")
+        t_warranty = request.POST.get("warranty")=="True"
+        image = request.FILES.get("image")
+        ticket=Ticket.objects.create(t_title=t_title, t_content=t_content, t_warranty=t_warranty)
+        if image:
+            TicketImage.objects.create(ticket=ticket, image=image)
+    return render(request, "ticket/add_ticket.html")
+
 
 def login(request):
     if request.user.is_authenticated:

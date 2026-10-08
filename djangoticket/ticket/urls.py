@@ -8,5 +8,6 @@ urlpatterns = [
     path("tickets/", views.ticketlist, name="tickets"),
     path("all/", views.allticketlist, name="all"),
     path("<int:t_id>/", views.detail, name="detail"),
+    path("add/", views.addTicket, name="addTicket"),
     path("logout/", views.logout, name="logout"),
 ]

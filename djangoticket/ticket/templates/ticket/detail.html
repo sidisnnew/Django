@@ -11,7 +11,7 @@
 Ticket {{ticket.id}}
 {% endblock %}
 {% block body %}
-<h2>Detail</h2>
+<h2 class="title">Detail</h2>
 
 <div class="container-fluid">
     <div class="border p-3">
@@ -36,9 +36,9 @@ Ticket {{ticket.id}}
                 <p>
                     <strong>Status:</strong>
                     {% if ticket.t_status %}
-                    ✓
+                    <span class="text-success">✓</span>
                     {% else %}
-                    ✕
+                    <span class="text-danger">✕</span>
                     {% endif %}
                     <form method="POST" style="display: inline;">
                         {% csrf_token %}
@@ -97,14 +97,14 @@ Ticket {{ticket.id}}
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="hidden" name="action" value="image">
-                    <input type="file" name="image" accept="image/*">
+                    <input type="file" name="image" accept="image/*" required>
                     <button type="submit">Upload</button>
                 </form>
                 <hr>
                 {% if images %}
                     {% for image in images %}
                         <p>
-                        <img src="{{ image.image.url }}" alt="Ticket image" width="500">
+                        <img src="{{ image.image.url }}" width="500">
                         <br>
                         {{image.pub_date}}
                         </p>

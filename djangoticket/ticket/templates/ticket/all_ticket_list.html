@@ -3,7 +3,7 @@
 All Tickets
 {% endblock %}
 {% block body %}
-<h2>All tickets</h2>
+<h2 class="title">All tickets</h2>
 <form method="get" action="{% url 'ticket:all' %}">
     <label for="from">From: </label>
     <input type="date" id="from" name="from">
